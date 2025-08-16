@@ -38,8 +38,12 @@ const todos = [
   2. Use an anonymous function as the callback.
   3. Return only the tasks that are not completed.
   */
-  
-  
+
+const incompleteTasks = todos.filter(function(todo) {
+  return !todo.completed;
+});
+
+ 
   /*
   🔹 Task 2: Sort Tasks by Priority
   
@@ -48,7 +52,9 @@ const todos = [
   2. Use an anonymous function as the comparison function.
   3. Sort tasks in ascending order of priority (1 = highest).
   */
-  
+const ascendingPriority = todos.sort(function(a, b) {
+  return a.priority - b.priority;
+});
   
   /*
   🔹 Task 3: Mark All Tasks as Completed
@@ -58,8 +64,11 @@ const todos = [
   2. Use an anonymous function to modify each object.
   3. Change the `completed` property to `true` for every task.
   */
+const newArray = todos.map(function(todo) {
+  return {...todo, completed: true};
+});
   
-  
+
   /*
   🔹 Task 4: Combine Filters
   
@@ -68,8 +77,36 @@ const todos = [
   2. Then, sort the filtered results by priority using `sort()`.
   3. Use method chaining to perform both steps together.
   */
-  
-  
+const chores = todos
+  .filter(function(todo) {
+  return !todo.completed;
+  })
+  .sort(function(a, b) {
+  return a.priority - b.priority;
+  })
+  .map(function(todo) {
+    return {...todo, completed: true};
+  });
+  //original is not modified!
+  //result stores in chores
+
+
+// using arrow functions 
+const arrowChores = todos
+  .filter(todo => !todo.completed)
+  .sort((a, b) => a.priority - b.priority)  // make sure sort uses two parameters
+  .map(todo => ({...todo, completed: true})); // use two sets of parentheses. the second set declares it an oject, not a function block
+
+
+
+
+
+
+
+
+
+
+
   // ============================================
   // 🧪 Console Test Your Work
   // ============================================
@@ -78,4 +115,8 @@ const todos = [
   // console.log("Sorted by Priority:", ...);
   // console.log("All Tasks Completed:", ...);
   // console.log("Sorted Incomplete Tasks:", ...);
-  
+console.log(incompleteTasks);
+console.log(ascendingPriority);
+console.log(newArray);
+console.log(chores);
+console.log(arrowChores);
